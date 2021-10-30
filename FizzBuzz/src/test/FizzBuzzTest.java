@@ -14,4 +14,8 @@ public class FizzBuzzTest {
     public void return2For2() {
         assertEquals("2", new FizzBuzz().parse(2));
     }
+
+    public void return4For4() {
+        assertEquals("4", new FizzBuzz().parse(4));
+    }
 }
