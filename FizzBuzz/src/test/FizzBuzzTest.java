@@ -21,6 +21,11 @@ public class FizzBuzzTest {
         return new Object[]{3, 6, 9};
     }
 
+    @DataProvider(name = "buzzNumbers")
+    public static Object[] buzzNumbers() {
+        return new Object[]{5, 10};
+    }
+
     @Test(dataProvider = "baseNumbers")
     @Parameters({"input", "expectedOutput"})
     void returnStringValueForNumber(int input, String expectedOutput) {
@@ -33,14 +38,10 @@ public class FizzBuzzTest {
         assertEquals("Fizz", new FizzBuzz().parse(input));
     }
 
-    @Test
-    void returnBuzzFor5() {
-        assertEquals("Buzz", new FizzBuzz().parse(5));
-    }
-
-    @Test
-    void returnBuzzFor10() {
-        assertEquals("Buzz", new FizzBuzz().parse(10));
+    @Test(dataProvider = "buzzNumbers")
+    @Parameters("input")
+    void returnBuzzForMultiplesOf5(int input) {
+        assertEquals("Buzz", new FizzBuzz().parse(input));
     }
 
     @Test
