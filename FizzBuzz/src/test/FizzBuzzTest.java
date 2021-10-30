@@ -1,13 +1,14 @@
 package test;
 
 import main.FizzBuzz;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.AssertJUnit.assertEquals;
 
 
+@Test
 public class FizzBuzzTest {
 //    @Test
 //    public void return1For1() {
@@ -24,9 +25,19 @@ public class FizzBuzzTest {
 //        assertEquals("4", new FizzBuzz().parse(4));
 //    }
 
-    @ParameterizedTest
-    @CsvSource({"1,1", "2,2", "4,4"})
+    @DataProvider(name = "numbers")
+    public static Object[][] numbersAndOutputs() {
+        return new Object[][]{{1, "1"}, {2, "2"}, {4, "4"}};
+    }
+
+    @Test(dataProvider = "numbers")
+    @Parameters({"input", "expectedOutput"})
     void returnStringValueForNumber(int input, String expectedOutput) {
         assertEquals(expectedOutput, new FizzBuzz().parse(input));
+    }
+
+    @Test
+    void returnFizzFor3() {
+        assertEquals("Fizz", new FizzBuzz().parse(3));
     }
 }
