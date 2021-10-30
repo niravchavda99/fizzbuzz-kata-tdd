@@ -40,4 +40,9 @@ public class FizzBuzzTest {
     void returnFizzFor3() {
         assertEquals("Fizz", new FizzBuzz().parse(3));
     }
+
+    @Test
+    void returnFizzFor6() {
+        assertEquals("Fizz", new FizzBuzz().parse(6));
+    }
 }
