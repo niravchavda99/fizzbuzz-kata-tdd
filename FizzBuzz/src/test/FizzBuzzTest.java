@@ -10,44 +10,26 @@ import static org.testng.AssertJUnit.assertEquals;
 
 @Test
 public class FizzBuzzTest {
-//    @Test
-//    public void return1For1() {
-//        assertEquals("1", new FizzBuzz().parse(1));
-//    }
-//
-//    @Test
-//    public void return2For2() {
-//        assertEquals("2", new FizzBuzz().parse(2));
-//    }
-//
-//    @Test
-//    public void return4For4() {
-//        assertEquals("4", new FizzBuzz().parse(4));
-//    }
 
-    @DataProvider(name = "numbers")
-    public static Object[][] numbersAndOutputs() {
+    @DataProvider(name = "baseNumbers")
+    public static Object[][] baseNumbers() {
         return new Object[][]{{1, "1"}, {2, "2"}, {4, "4"}};
     }
 
-    @Test(dataProvider = "numbers")
+    @DataProvider(name = "fizzNumbers")
+    public static Object[] fizzNumbers() {
+        return new Object[]{3, 6, 9};
+    }
+
+    @Test(dataProvider = "baseNumbers")
     @Parameters({"input", "expectedOutput"})
     void returnStringValueForNumber(int input, String expectedOutput) {
         assertEquals(expectedOutput, new FizzBuzz().parse(input));
     }
 
-    @Test
-    void returnFizzFor3() {
-        assertEquals("Fizz", new FizzBuzz().parse(3));
-    }
-
-    @Test
-    void returnFizzFor6() {
-        assertEquals("Fizz", new FizzBuzz().parse(6));
-    }
-
-    @Test
-    void returnFizzFor9() {
-        assertEquals("Fizz", new FizzBuzz().parse(9));
+    @Test(dataProvider = "fizzNumbers")
+    @Parameters({"input"})
+    void returnFizzForMultiplesOf3(int input) {
+        assertEquals("Fizz", new FizzBuzz().parse(input));
     }
 }

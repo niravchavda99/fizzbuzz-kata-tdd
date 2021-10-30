@@ -2,7 +2,7 @@ package main;
 
 public class FizzBuzz {
     public String parse(int number) {
-        if(number == 3 || number == 6 || number == 9) return "Fizz";
+        if (number % 3 == 0) return "Fizz";
         return String.valueOf(number);
     }
 }
